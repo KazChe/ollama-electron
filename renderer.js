@@ -5,7 +5,6 @@
  * `contextIsolation` is turned on. Use the contextBridge API in `preload.js`
  * to expose Node.js functionality from the main process.
  */
-// add the following code to the renderer.js file:
 // listen for on click  from the form
 function sendPrompt() {
     event.preventDefault();

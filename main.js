@@ -1,13 +1,12 @@
 const { app, BrowserWindow } = require('electron');
 const express = require('express');
 const bodyParser = require('body-parser');
-const jsonStream = require('stream-json/streamers/StreamValues'); // Import parse stream transform from stream-json
+const jsonStream = require('stream-json/streamers/StreamValues');
 const { ipcRenderer } = require('electron');
 
-// Handle unhandled promise rejections
+// handle unhandled promise rejections
 process.on('unhandledRejection', (reason, promise) => {
   console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  // Application specific logging, throwing an error, or other logic here
 });
 
 let mainWindow;
@@ -17,7 +16,7 @@ function createServer() {
   const app = express();
   app.use(bodyParser.json());
 
-  let responseStream = new jsonStream.Transform({ objectMode: true }); // Create a new stream with the parse function
+  let responseStream = new jsonStream.Transform({ objectMode: true });
 
   app.post('/api/generate', (req, res) => {
     const request = req.body;
@@ -33,7 +32,7 @@ function createServer() {
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 970,
     height: 400,
     webPreferences: {
       nodeIntegration: true,
@@ -42,7 +41,6 @@ function createWindow() {
 
   mainWindow.loadFile('index.html');
 
-  // Send the generated response to the main process when it's available
   ipcRenderer.on('response', (event, message) => {
     console.log(message);
     mainWindow.webContents.send('setResponse', message);
