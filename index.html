@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Prompt Generator</title>
+    <title>ask local llm</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -12,34 +12,56 @@
         width: 300px;
       }
       input[type="text"],
+      select {
+        display: block;
+        margin-bottom: .5em;
+        font-size: 1rem;
+        border: 1px solid blueviolet;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        padding-bottom: 0.5em;
+      }
       textarea {
         display: block;
         padding: 1em;
         font-size: 1rem;
-        border: none;
+        width: 100%;
+        border: 1px solid blueviolet;
         border-radius: 4px;
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
       }
       input[type="submit"] {
-        background-color: #4caf50;
+        background-color: #9595bd;
         color: white;
         padding: 1em 2em;
         border: none;
         border-radius: 4px;
         cursor: pointer;
+        margin-bottom: 1em;
+      }
+      #response {
+        margin: auto;
+        padding: 1em;
+        width: 675px;
+        white-space: pre-wrap;
+        background-color: bisque;
+              
       }
     </style>
   </head>
   <body>
     <form id="form">
-      <h1>Prompt Generator</h1>
-      <label for="modelName">Model:</label>
-      <input type="text" id="modelName" value="mistral" />
+      <h1>Ask Local LLM</h1>
+      <label for="modelName">Select model:</label>
+      <select id="modelName">
+        <option value="gpt-2">Mistral</option>
+        <option value="gpt-3">llama3.1</option>
+      </select>
       <br />
-      <label for="prompt">Prompt:</label>
+      <label for="prompt">Enter Prompt:</label>
       <textarea id="prompt"></textarea>
       <br />
-      <input type="submit" onclick="sendPrompt(event)" />
+      <input type="submit" onclick="sendPrompt(event)" value="Send"/>
     </form>
     <pre id="response"></pre>
     <script src="renderer.js"></script>
