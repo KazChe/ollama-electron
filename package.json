@@ -1,0 +1,22 @@
+{
+  "name": "eleeee",
+  "productName": "eleeee",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "kam",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@types/stream-json": "1.7.7",
+    "body-parser": "1.20.2",
+    "express": "4.19.2",
+    "json-stream": "1.0.0",
+    "stream-json": "1.8.0"
+  },
+  "devDependencies": {
+    "electron": "31.3.1"
+  }
+}
