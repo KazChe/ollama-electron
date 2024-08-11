@@ -18,16 +18,30 @@ function createServer() {
 
   let responseStream = new jsonStream.Transform({ objectMode: true });
 
+  // handle call to ollama api
   app.post('/api/generate', (req, res) => {
     const request = req.body;
     console.log('>>>>> request',request);
-    responseStream.push(request);
-    responseStream.pipe(res);
+    // responseStream.push(JSON.stringify(request));
+    // responseStream.pipe(res);
+    fetch('http://localhost:11434/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: {"prompt": JSON.stringify(request), "model": "mistral", "stream": false }
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('>>>>> response', data);
+        res.send(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   });
 
-  server = app.listen(11434, () => {
-    console.log(`Ollama API listening on http://localhost:${server.address().port}`);
-  });
+  
 }
 
 function createWindow() {

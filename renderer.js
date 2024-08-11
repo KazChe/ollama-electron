@@ -6,11 +6,31 @@
  * to expose Node.js functionality from the main process.
  */
 // listen for on click  from the form
-function sendPrompt() {
+function sendPrompt(event) {
     event.preventDefault();
     const prompt = document.getElementById('prompt').value;
-    window.document.getElementById('response').innerHTML = prompt;
-    // console.log('>>>>> sendPrompt', prompt);
+    console.log('>>>>> prompt', prompt);
+    // send http post request to ollama api
+    fetch('http://localhost:11434/api/generate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // body: JSON.stringify({ prompt }),
+        body: JSON.stringify( { "prompt": prompt, "model": "mistral", "stream": false } )
+    })
+        .then((response) => { 
+            return response.json();
+        })
+        .then((data) => {
+            console.log('>>>>> response', data.response);
+            window.document.getElementById('response').innerHTML = data.response;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+
 
 
 }
