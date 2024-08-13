@@ -1,3 +1,64 @@
-/* styles.css */
-
-/* Add styles here to customize the appearance of your app */
+body {
+    font-family: Arial, sans-serif;
+  }
+  #form {
+    margin: auto;
+    width: 300px;
+  }
+  input[type="text"],
+  select {
+    display: block;
+    margin-bottom: .5em;
+    font-size: 1rem;
+    border: 1px solid blueviolet;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    padding-bottom: 0.5em;
+  }
+  textarea {
+    display: block;
+    padding: 1em;
+    font-size: 1rem;
+    width: 100%;
+    border: 1px solid blueviolet;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  }
+  input[type="button"] {
+    background-color: #9595bd;
+    color: white;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+  input[type="button"]:active {
+    background-color: #7a7aad;
+    transform: translateY(2px);
+  }
+  /* Spinner styles */
+  .spinner {
+    display: none; /* Hidden by default */
+    width: 30px;
+    height: 30px;
+    border: 4px solid rgba(150, 150, 189, 0.3); /* Light grey */
+    border-top: 4px solid #9595bd; /* Darker grey */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-top: 1em;
+  }
+  /* Keyframes for spin animation */
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+  #response {
+    margin: auto;
+    padding: 1em;
+    width: 675px;
+    white-space: pre-wrap;
+    background-color: bisque;
+    border: 1px solid blueviolet;
+  }

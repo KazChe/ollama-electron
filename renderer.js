@@ -7,10 +7,16 @@ which updates the UI with the generated text.
 
 // listen for on click  from the form
 function sendPrompt(event) {
+    
     event.preventDefault();
+    const prompt = document.getElementById('prompt').value;
+    if (!prompt) {
+        alert('Please enter a prompt');
+        return;
+    }
     const button = document.getElementById('sendButton');
     const spinner = document.getElementById('spinner');
-    const prompt = document.getElementById('prompt').value;
+    
 
     button.disabled = true;
     button.style.cursor = 'not-allowed';
