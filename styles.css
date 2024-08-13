@@ -62,3 +62,60 @@ body {
     background-color: bisque;
     border: 1px solid blueviolet;
   }
+
+/* left navigation stuff */
+  .container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.spinner {
+    display: none;
+    width: 30px;
+    height: 30px;
+    border: 4px solid rgba(150, 150, 189, 0.3);
+    border-top: 4px solid #9595bd;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-top: 1em;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
