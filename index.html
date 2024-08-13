@@ -30,7 +30,7 @@
         border-radius: 4px;
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
       }
-      input[type="submit"] {
+      input[type="button"] {
         background-color: #9595bd;
         color: white;
         padding: 1em 2em;
@@ -38,6 +38,27 @@
         border-radius: 4px;
         cursor: pointer;
         margin-bottom: 1em;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+      }
+      input[type="button"]:active {
+        background-color: #7a7aad;
+        transform: translateY(2px);
+      }
+      /* Spinner styles */
+      .spinner {
+        display: none; /* Hidden by default */
+        width: 30px;
+        height: 30px;
+        border: 4px solid rgba(150, 150, 189, 0.3); /* Light grey */
+        border-top: 4px solid #9595bd; /* Darker grey */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-top: 1em;
+      }
+      /* Keyframes for spin animation */
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
       }
       #response {
         margin: auto;
@@ -61,7 +82,8 @@
       <label for="prompt">Enter Prompt:</label>
       <textarea id="prompt"></textarea>
       <br />
-      <input type="submit" onclick="sendPrompt(event)" value="Send"/>
+      <input type="button" onclick="sendPrompt(event)" value="Send" id="sendButton"/>
+      <div id="spinner" class="spinner"></div>
     </form>
     <pre id="response"></pre>
     <script src="renderer.js"></script>
