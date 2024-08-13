@@ -17,23 +17,22 @@ function sendPrompt(event) {
     const button = document.getElementById('sendButton');
     const spinner = document.getElementById('spinner');
     
-
+    const model = document.getElementById('modelName').value;
+    console.log('>>>>> model', model);
     button.disabled = true;
-    button.style.cursor = 'not-allowed';
     spinner.style.display = 'inline-block';
 
-    // console.log('>>>>> prompt', prompt);
     // send http post request to ollama api             
     fetch('http://localhost:11434/api/generate', { // TODO: refactor this main.js to have express server handle the call to ollama api
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify( { "prompt": prompt, "model": "mistral", "stream": false } )
+        body: JSON.stringify( { "prompt": prompt, "model": model, "stream": false } )
     })
         .then((response) => { 
             spinner.style.display = 'none';
-            button.style.cursor = 'pointer';
+            button.disabled = false;
             return response.json();
         })
         .then((data) => {
